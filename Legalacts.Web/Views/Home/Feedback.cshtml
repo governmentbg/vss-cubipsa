@@ -1,0 +1,143 @@
+﻿@model Legalacts.Web.Models.FeedbackVM
+
+@using Legalacts.Web.Captcha
+
+<style>
+  .search-form textarea {
+      line-height: 20px;
+      background: #FFFFFF;
+      border: 2px solid #897a83;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 9px 10px;
+  }
+
+  .search-form .selectboxit, .search-form textarea {
+      width: 95%;
+      float: left;
+  }
+
+  .search-form input[type=text], .validation-errors{
+      width: 95%;
+  }
+
+  .required-span {
+      font-weight: bold;
+      color: red;
+      display: block;
+      width: 5%;
+      text-align: center;
+      float: left;
+  }
+
+  .vl img {
+      float: left;
+  }
+</style>
+
+<div class="bg-home">
+    @Html.Partial(MVC.Shared.Views._HeaderPartial)
+    <div class="search-panel">
+        <div class="container">
+            <div class="title">
+                <strong>Обратна</strong>
+                <strong>връзка</strong>
+            </div>
+            @using (Html.BeginForm(MVC.Home.ActionNames.Feedback,
+                MVC.Home.Name,
+                new { area = string.Empty },
+                FormMethod.Post,
+                new { @class = "search-form" }))
+            {
+
+                @Html.CustomValidationSummary()
+
+                if (TempData["_feedbackSuccess"] != null)
+                {
+                    <div class="rw">
+                        <div class="lbl"></div>
+                        <div class="vl">
+                            <ul class='validation-errors border'>
+                                <li style="color: green; background-image: url('/Content/img/ico_info_blue.png');">
+                                    @TempData["_feedbackSuccess"]
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                }
+
+                <div class="rw">
+                    <div class="lbl">Съобщение за:</div>
+                    <div class="vl">
+                        @Html.DropDownListFor(m => m.Type,
+                            new List<SelectListItem>()
+                            {
+                                new SelectListItem { Value = string.Empty, Text = "- Моля изберете -"},
+                                new SelectListItem { Value = "1", Text = "Въпрос", },
+                                new SelectListItem { Value = "2", Text = "Предложение", },
+                                new SelectListItem { Value = "3", Text = "Технически проблем", }
+                            }, new { @class = "selectboxit" })
+
+                        <span class="required-span">*</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl">Име и фамилия:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.Name)
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl">Eлектронна поща:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.Email)
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl" style="vertical-align: top;">Описание:</div>
+                    <div class="vl">
+                        @Html.TextAreaFor(m => m.Body, new { rows = "4" })
+                        <span class="required-span">*</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl">Код за сигурност:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.Captcha, new { @class = "captcha", @autocomplete = "off", @style = "float:left; margin-right:10px;" })
+                        @Html.CaptchaImage(38, 120)
+                        <span class="required-span">*</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl"></div>
+                    <div class="vl">
+                        <div style="width:95%">
+                            <input type="submit" class="search-submit please-wait" value="ИЗПРАТИ" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+<div class="list-results"></div>
+
+@Html.Partial(MVC.Shared.Views._FooterPartial)
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".list-results").css("margin-top", $('.bg-home').height() + "px");
+        });
+    </script>
+}

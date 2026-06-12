@@ -1,0 +1,225 @@
+﻿@model Legalacts.Model.Entities.Act
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.back').click(function () {
+                //window.history.back()
+                window.location.href = document.referrer;
+            });
+        });
+    </script>
+}
+<div class="bg-inner">
+    @Html.Partial(MVC.Shared.Views._HeaderPartial)
+</div>
+@if (Model != null)
+{
+    <div class="container">
+        <div class="inner-nav clearfix">
+            <a class="back">
+                <img src="@Url.Content(Links.Content.img.back_png)" alt="" />
+                <span>Назад <span class="hidden-xs hidden-sm">към резултатите</span></span>
+            </a>
+            @if (Request.QueryString["isAdmin"] == null)
+            {
+                <a href="@Url.Action(MVC.Search.ActionNames.Search)" class="search">
+                    <span><span class="hidden-xs">Ново</span> търсене</span>
+                    <img src="@Url.Content(Links.Content.img.search_png)" alt="" />
+                </a>
+            }
+        </div>
+        <div class="list-results">
+            <h2 class="brown">Данни за делото</h2>
+            <div class="inner-page-table">
+                <div class="tr">
+                    <div class="lbl">Съд:</div>
+                    <div class="vl">
+                        @if (Model.Court != null)
+                        {
+                            <text>@Model.Court.Name</text>
+                        }
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Вид на делото:</div>
+                    <div class="vl">
+                        @if (Model.CaseKind != null)
+                        {
+                            <text>@Model.CaseKind.Name</text>
+                        }
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Номер на делото:</div>
+                    <div class="vl">
+                        @Model.CaseNumber
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Година:</div>
+                    <div class="vl">
+                        @Model.CaseYear
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Съдебен състав / Съдия:</div>
+                    <div class="vl">
+                        @Model.Judge
+                    </div>
+                </div>
+            </div>
+            <h2 class="brown">Данни за акта</h2>
+            <div class="inner-page-table">
+                <div class="tr">
+                    <div class="lbl">Вид на акта:</div>
+                    <div class="vl">
+                        @if (Model.ActKind != null)
+                        {
+                            <text>@Model.ActKind.Name</text>
+                        }
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Номер на акта:</div>
+                    <div class="vl">
+                        @Model.ActNumber
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">ECLI номер:</div>
+                    <div class="vl">
+                        @Model.EcliCode
+                    </div>
+                </div>
+
+                @if (Model.PreviousEcliCode != null)
+                {
+                    <div class="tr">
+                        <div class="lbl">Предишен ECLI номер:</div>
+                        <div class="vl">
+                            @Model.PreviousEcliCode
+                        </div>
+                    </div>
+                }
+
+                <div class="tr">
+                    <div class="lbl">Дата на постановяване:</div>
+                    <div class="vl">
+                        @Html.DisplayFor(m => m.StartDate)
+                    </div>
+                </div>
+                @*<div class="tr">
+                        <div class="lbl">Дата на влизане в сила:</div>
+                        <div class="vl">
+                            @Html.DisplayFor(m => m.LegalDate)
+                        </div>
+                    </div>*@
+                @*<div class="tr">
+                        <div class="lbl">Статус на акта:</div>
+                        <div class="vl">
+                            @if (Model.Status != null)
+                            {
+                                <text>@Model.Status.Name</text>
+                            }
+                        </div>
+                    </div>*@
+                <div class="tr">
+                    <div class="lbl">Съдържание на акта:</div>
+                    <div class="vl">
+                        @if (Model.ActDocument != null && Model.ActDocument.Content != null && !String.IsNullOrWhiteSpace(Model.ActDocument.MimeType))
+                        {
+                            @Html.EncryptActionLink("Изтегли", MVC.Search.ActionNames.GetActContentByActId, MVC.Search.Name, new { actId = Model.ActId }, new { target = "_blank" })
+                        }
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Дата на постановяване на мотива:</div>
+                    <div class="vl">
+                        @Html.DisplayFor(m => m.MotiveDate)
+                    </div>
+                </div>
+                <div class="tr">
+                    <div class="lbl">Съдържание на мотива:</div>
+                    <div class="vl">
+                        @if (Model.MotiveDocument != null && Model.MotiveDocument.Content != null && !String.IsNullOrWhiteSpace(Model.MotiveDocument.MimeType))
+                        {
+                            @Html.EncryptActionLink("Изтегли", MVC.Search.ActionNames.GetMotiveContentByActId, MVC.Search.Name, new { actId = Model.ActId }, new { target = "_blank" })
+                        }
+                    </div>
+                </div>
+            </div>
+            @if (Model.HigherCourt != null)
+            {
+                <h2 class="brown">Данни за изпращане в по-висша инстанция</h2>
+                <div class="inner-page-table">
+                    <div class="tr">
+                        <div class="lbl">Съд:</div>
+                        <div class="vl">
+                            @if (Model.HigherCourt.Court != null)
+                            {
+                                <text>@Model.HigherCourt.Court.Name</text>
+                            }
+                        </div>
+                    </div>
+                    <div class="tr">
+                        <div class="lbl">Изходящ номер:</div>
+                        <div class="vl">
+                            @Model.HigherCourt.OutputNumber
+                        </div>
+                    </div>
+                    <div class="tr">
+                        <div class="lbl">Година:</div>
+                        <div class="vl">
+                            @Model.HigherCourt.Year
+                        </div>
+                    </div>
+                    <div class="tr">
+                        <div class="lbl">Тип на документа:</div>
+                        <div class="vl">
+                            @if (Model.HigherCourt.SendToDocumentKind != null)
+                            {
+                                <text>@Model.HigherCourt.SendToDocumentKind.Name</text>
+                            }
+                        </div>
+                    </div>
+                    <div class="tr">
+                        <div class="lbl">Дата на изпращане:</div>
+                        <div class="vl">
+                            @Html.DisplayFor(m => m.HigherCourt.DateOfDispatch)
+                        </div>
+                    </div>
+                    @*<div class="tr">
+                            <div class="lbl">Резултат от обжалване:</div>
+                            <div class="vl">
+                                @Model.ResultOfAppealDescription
+                            </div>
+                        </div>*@
+                </div>
+            }
+            @if (Model.ConnectedActs != null && Model.ConnectedActs.Count > 0)
+            {
+                <h2 class="brown">Свързани съдебни актове</h2>
+                <div class="results-table no-bottom-border">
+                    <div class="results-thead">
+                        <div class="results-cell">Вид акт</div>
+                        <div class="results-cell">Акт номер</div>
+                        <div class="results-cell">В сила</div>
+                        <div class="results-cell">Съд</div>
+                        <div class="results-cell">Дело номер</div>
+                        <div class="results-cell">Вид дело</div>
+                    </div>
+                    @foreach (var act in Model.ConnectedActs)
+                    {
+                        @Html.DisplayFor(m => act, MVC.Shared.Views.DisplayTemplates.ActRow)
+                    }
+                </div>
+            }
+            else
+            {
+                <h2 class="brown">Не са намерени свързани съдебни актове</h2>
+            }
+        </div>
+    </div>
+}
+@Html.Partial(MVC.Shared.Views._FooterPartial)

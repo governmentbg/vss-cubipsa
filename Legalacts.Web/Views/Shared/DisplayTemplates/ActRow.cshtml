@@ -1,0 +1,59 @@
+﻿@model Legalacts.Model.Entities.Act
+
+@if (Model != null)
+{
+    string detailsLinkTarget = Url.EncryptAction(MVC.Search.ActionNames.Details, MVC.Search.Name, new { actId = Model.ActId});
+    <a href="@detailsLinkTarget" class="results-row please-wait">
+        <div class="results-cell">
+            <img src="@Url.Content(Links.Content.img.row_arrow_left_gif)" alt="" class="arr-left" />
+            @if (Model.ActKind != null)
+            {
+                <span class="hidden-lg">Вид акт:</span>
+                <span class="label">@Model.ActKind.Name</span>
+            }
+        </div>
+        <div class="results-cell">
+            <span class="hidden-lg">Акт номер:</span> 
+            <span class="label">
+                @if (Model.ActNumber.HasValue)
+                {
+                    <text>№ @Model.ActNumber.Value</text>
+                }
+
+                @if (Model.StartDate.HasValue)
+                {
+                    <text>от @Html.DisplayFor(m => m.StartDate)</text>
+                }
+            </span>
+        </div>
+        <div class="results-cell">
+            @if(Model.LegalDate.HasValue)
+            { 
+                <span class="hidden-lg">В сила:</span> 
+                <span class="label">
+                    @Html.DisplayFor(m => m.LegalDate)
+                </span>
+            }
+        </div>
+        <div class="results-cell">
+            @if (Model.Court != null)
+            {
+                <span class="hidden-lg">Съд:</span>
+                <span class="label">@Model.Court.Name</span>
+            }
+        </div>
+        <div class="results-cell">
+            <span class="hidden-lg">Дело номер:</span> 
+            <span class="label"><strong>@Model.CaseNumber/@Model.CaseYear</strong></span>
+        </div>
+        <div class="results-cell">
+            @if (Model.CaseKind != null)
+            {
+                <span class="hidden-lg">Вид дело:</span>
+                <span class="label">@Model.CaseKind.Name</span>
+            }
+            <img src="@Url.Content(Links.Content.img.row_arrow_right_gif)" alt="" class="arr-right" />
+        </div>
+    </a>
+}
+

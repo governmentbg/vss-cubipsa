@@ -1,0 +1,162 @@
+﻿@model Legalacts.Web.Models.SearchLogVM
+@using PagedList
+@using PagedList.Mvc;
+
+<div class="container main-content">
+    <form class="search-form logged-form auto-width-cells" method="post">
+        @Html.CustomValidationSummary(true)
+
+        <div class="rw">
+            <div class="lbl">Съд:</div>
+            <div class="vl">
+                @Html.DropDownListFor(m => m.CourtId, Model.Courts, "Всички", new { @class = "selectboxit" })
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl">Вид на транзакцията:</div>
+            <div class="vl">
+                @Html.DropDownListFor(m => m.ActionLogTypeId, Model.ActionLogTypes, "Всички", new { @class = "selectboxit" })
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl">Дата на постановление от:</div>
+            <div class="vl clearfix">
+                <div class="col-sm-6 no-padding">
+                    @Html.TextBoxFor(m => m.DateFrom, new { @class = "date", id = "from", @autocomplete = "off", style = "cursor: pointer" })
+                </div>
+                <div class="col-sm-6 no-padding">
+                    <div class="tbl">
+                        <div class="tbl-cell">
+                            до:
+                        </div>
+                        <div class="tbl-cell">
+                            @Html.TextBoxFor(m => m.DateTo, new { @class = "date", id = "to", @autocomplete = "off", style = "cursor: pointer" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl"></div>
+            <div class="vl clearfix">
+                <span class="small-info">Общ брой съдебни актове: <strong>@ViewData["TotalActsCount"]</strong></span>
+                <input type="submit" class="search-submit please-wait" value="ТЪРСИ" />
+            </div>
+        </div>
+    </form>
+    <div class="clear"></div>
+
+    @if (ViewData.ModelState.IsValid && Model.ShowResults)
+    {
+        if (Model.SearchResults == null)
+        {
+            Model.SearchResults = new PagedList<Legalacts.Model.Entities.Log>(null, 1, 1);
+        }
+
+        if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+        {
+            <h2 class="brown">Намерени <strong>@Model.SearchResults.TotalItemCount</strong> операции</h2>
+            <div class="results-table">
+                <div class="results-thead">
+                    <div class="results-cell">Вид операция</div>
+                    <div class="results-cell">Дата</div>
+                    <div class="results-cell">Съд</div>
+                    <div class="results-cell">Дело номер</div>
+                    <div class="results-cell">UID</div>
+                    <div class="results-cell">Вид на акта</div>
+                </div>
+                @foreach (var res in Model.SearchResults)
+                {
+                    bool isDelete = res.ActionLogTypeId == (int)Legalacts.Web.Utils.Constants.ActionLogTypeIds.Delete;
+                    string detailsTargetLink = "href=" + Url.Content("/Search/UidDetails?uid=" + res.UID);
+                    <a @(!isDelete ? detailsTargetLink : "") class="results-row @(isDelete ? "" : "please-wait")">
+                        <div class="results-cell">
+                            <img src="@Url.Content(Links.Content.img.row_arrow_left_gif)" alt="" class="arr-left" />
+                            @if (res.ActionLogType != null)
+                            {
+                                <span class="hidden-lg">Вид операция:</span> 
+                                <span class="label">@res.ActionLogType.Name</span>
+                            }
+                        </div>
+                        <div class="results-cell">
+                            <span class="hidden-lg">Дата:</span> 
+                            <span class="label">
+                                @Html.DisplayFor(m => res.DatetimeOfAction, MVC.Shared.Views.DisplayTemplates.DateTimeWithTime)
+                            </span>
+                        </div>
+                        <div class="results-cell">
+                            @if (res.Court != null)
+                            {
+                            <span class="hidden-lg">Съд:</span> 
+                                <span class="label">@res.Court.Name</span>
+                            }
+                        </div>
+                        <div class="results-cell">
+                            <span class="hidden-lg">Дело номер:</span> 
+                            <span class="label">@res.CaseNumber</span>
+                        </div>
+                        <div class="results-cell">
+                            <span class="hidden-lg">UID:</span> 
+                            <span class="label">@res.UID</span>
+                        </div>
+                        <div class="results-cell">
+                            @if (res.ActKind != null)
+                            {
+                                <span class="hidden-lg">Вид на акта:</span>
+                                <span class="label">@res.ActKind.Name</span>
+                            }
+                            <img src="@Url.Content(Links.Content.img.row_arrow_right_gif)" alt="" class="arr-right" />
+                        </div>
+                    </a>
+                }
+            </div>
+
+            if(Model.SearchResults.PageCount > 1)
+            { 
+                <div class="paging clearfix">
+                    @Html.PagedListPager(Model.SearchResults,
+                     page => Url.Action(MVC.Admin.ActionNames.Search,
+                        MVC.Admin.Name
+                        , new
+                        {
+                            page = page,
+                            courtId = Request.QueryString["courtId ="],
+                            actionLogTypeId = Request.QueryString["actionLogTypeId"],
+                            dateFrom = Request.QueryString["dateFrom"],
+                            dateTo = Request.QueryString["dateTo"],
+                            showResults = Request.QueryString["showResults"]
+                        })
+                        , new PagedListRenderOptions
+                        {
+                            Display = PagedListDisplayMode.IfNeeded,
+                            DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                            LinkToNextPageFormat = ">",
+                            LinkToPreviousPageFormat = "<"
+                        })
+                    <span>Страница (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                </div>
+            }
+        }
+        else if (Model.ShowResults)
+        {
+            <h2 class="brown">Няма намерени резултати</h2>
+        }
+
+    }
+</div>
+
+@section scripts
+        {
+    <script>
+        $(window).resize(function () { calc_list_margin_top(); });
+        $(document).ready(function () {
+            calc_list_margin_top();
+            $('html, body').animate({ scrollTop: ($('.bg-home').height() - $('.scroll-to-top').height() / 2) }, 1400, 'easeOutQuint');
+        });
+        function calc_list_margin_top() {
+            $(".list-results").css("margin-top", $('.bg-home').height() + "px");
+        }
+    </script>
+}
+
+@Html.Partial(MVC.Shared.Views._FooterPartial)

@@ -1,0 +1,26 @@
+﻿<footer>
+    <div class="container">
+        <div class="images">
+            <img src="@Url.Content(Links.Content.img.footer_logos_gif)" alt="" />
+        </div>
+        <div class="info">
+            <p>Проект “Обновени информационни системи за по-добро обслужване. Нормативна уредба на електронното правосъдие." Oбособена позиция № 5: "Създаване на централен уеб базиран интерфейс за публикуване на съдебните актове”</p>
+            <p>Проектът се осъществява с финансовата подкрепа на Оперативна програма "Административен капацитет", съфинансирана от Европейския социален фонд и от държавния бюджет на Република България.</p>
+            <p>Въвеждането на Европейския идентификатор на съдебната практика (ECLI) е осъществено с финансовата подкрепа на Програма „Правосъдие“ на Европейския съюз (2014-2020).</p>
+        </div>
+
+        <div class="clear"></div>
+        <div class="subfooter">
+            <div class="images">
+                <a href="https://portal.justice.bg/">Единен портал за електронно правосъдие</a> <br />
+
+                @Html.ActionLink("Начало", MVC.Search.ActionNames.Search, MVC.Search.Name)
+                <span>|</span>
+                @Html.ActionLink("Достъпност", MVC.Home.ActionNames.Accessibility, MVC.Home.Name)
+                <span>|</span>
+                @Html.ActionLink("Обратна връзка", MVC.Home.ActionNames.Feedback, MVC.Home.Name)
+            </div>
+            <div class="info">© @(DateTime.Now.Year) Висш съдебен съвет на Република България</div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,1 @@
+﻿INSERT INTO [Roles] ([Id], [Name], [Description]) VALUES ('ed201db4-bd56-4f7f-92a4-b224dd671f2b', 'admin', 'Администратор');

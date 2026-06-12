@@ -1,0 +1,28 @@
+﻿@model Legalacts.Web.Models.FeedbackTemplateVM
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+            body {
+                font-family: Arial;
+                padding: 0px;
+                margin: 0px;
+                color: #000000;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+<body>
+    <p>@Legalacts.Web.Models.FeedbackTemplateVM.MessageSubjectPrefix</p>
+    <p><b>Съобщение за:</b> @Model.Subject</p>
+    <p><b>Име и фамилия:</b> @Model.Name</p>
+    <p><b>Eлектронна поща:</b> @Model.Email</p>
+    <p><b>Описание:</b></p>
+    <p>@Raw(Model.Body)</p>
+</body>
+</html>
+

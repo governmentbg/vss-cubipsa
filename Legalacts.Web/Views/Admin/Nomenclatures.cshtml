@@ -1,0 +1,63 @@
+﻿@model Legalacts.Web.Models.NomenclaturesVM
+
+<div class="container nomenklaturi main-content">
+    @if (Model != null)
+    {
+        <div class="col-md-4 col-sm-6">
+            <h3>Активни видове съдебни актове:</h3>
+            <div class="active-dropdowns">
+                @if (Model.ActKinds != null && Model.ActKinds.Count > 0)
+                {
+                    using (Html.BeginForm(MVC.Admin.ActionNames.EditActKinds,
+                            MVC.Admin.Name,
+                            FormMethod.Post))
+                    {
+                        for (int i = 0; i < Model.ActKinds.Count; i++)
+                        {
+                            <label class="checkbox">@Model.ActKinds[i].Name: @Html.CheckBoxFor(m => m.ActKinds[i].IsActive) </label>
+                            @Html.HiddenFor(m => m.ActKinds[i].ActKindId)
+                        }
+                        <input type="submit" class="search-submit" value="ЗАПАЗИ" />
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6 dela">
+            <h3>Активни видове дела:</h3>
+            @if (Model.CaseKinds != null && Model.CaseKinds.Count > 0)
+            {
+                using (Html.BeginForm(MVC.Admin.ActionNames.EditCaseKinds,
+                        MVC.Admin.Name,
+                        FormMethod.Post))
+                {
+                    int count = Model.CaseKinds.Count;
+                    int halfCount = count / 2;
+                    if (count % 2 == 1)
+                    {
+                        halfCount++;
+                    }
+
+                    <div class="col-md-6 active-dropdowns no-side-padding">
+                        @for (int i = 0; i < halfCount; i++)
+                        {
+                            <label class="checkbox">@Model.CaseKinds[i].Name: @Html.CheckBoxFor(m => m.CaseKinds[i].IsActive) </label>
+                            @Html.HiddenFor(m => m.CaseKinds[i].CaseKindId)
+                        }
+                    </div>
+                
+                    <div class="col-md-6 active-dropdowns no-side-padding">
+                        @for (int i = halfCount; i < count; i++)
+                        {
+                            <label class="checkbox">@Model.CaseKinds[i].Name: @Html.CheckBoxFor(m => m.CaseKinds[i].IsActive) </label>
+                            @Html.HiddenFor(m => m.CaseKinds[i].CaseKindId)
+                        }
+                    </div>
+                
+                    <input type="submit" class="search-submit" value="ЗАПАЗИ" />
+                }
+            }
+        </div>
+    }
+</div>
+
+@Html.Partial(MVC.Shared.Views._FooterPartial)

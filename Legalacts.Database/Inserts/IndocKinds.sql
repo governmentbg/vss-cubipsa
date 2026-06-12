@@ -1,0 +1,68 @@
+﻿SET IDENTITY_INSERT [dbo].[IndocKinds] ON
+
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8001,N'Искова молба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8002,N'Жалба по чл.25 ЗТР',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8003,N'Жалба с-у действия на съдия по вписван.',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8004,N'Заявление непарични вноски',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8005,N'Заявление за издав. заповед за изпълн.',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8006,N'Молба ',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8007,N'Молба за назначаване на одитор',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8008,N'Молба за възст. срок за обжалване ',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8009,N'Молба (искане) по ЗЗДН',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8010,N'Молба за издаване на изпълнителен лист',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8011,N'Молба за обезпечение',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8012,N'Молба за обезп. на доказателства (ЧГД)',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8013,N'Молба за обявяване в несъстоятелност',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8014,N'Молба за опис насл./връщ. на дете (ЧГД)',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8015,N'Молба за отказ от наследство (ЧГД)',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8016,N'Молба за приемане на наследство (ЧГД)',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8017,N'Препирня за подсъдност',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8018,N'Жалба с-у административен акт',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8019,N'Молба за спиране на адм. акт',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8020,N'Заявление за регистрация',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8021,N'Обвинителен акт',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8022,N'Жалба по ЗИН',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8023,N'Жалба по чл.68, ал.3 НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8024,N'Жалба срещу НП',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8025,N'Жалба срещу постановление по чл.243 НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8026,N'Жалба - 24ч. задържане',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8027,N'Жалба по текст от НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8028,N'Искане',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8029,N'Искане за претърсване, обиск, изземване',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8030,N'Искане по чл.368 НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8031,N'Искане по чл.64 НПК за вземане на МНО',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8032,N'Молба за комулация',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8033,N'Молба предварит.освобожд.',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8034,N'Молба за реабилитация',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8035,N'Молба по част VII-ма от ГПК (нов)',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8036,N'Молба ( искане) по чл.65 НПК за измен.МНО',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8037,N'По член 23 от ЗБППМН',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8038,N'Постановление по чл.243 НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8039,N'Постановление по чл.375 НПК',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8040,N'Полицейска преписка по УБДХ',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8041,N'Предложение за кумулация',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8042,N'Предложение за лечение',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8043,N'Предложение за разкр. на банкова сметка',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8044,N'Предложение от Н-ка на затвора',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8045,N'Предложение от ОП',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8046,N'Предложение от пробационна служба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8047,N'Споразумение за прекратяване на НП',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8048,N'Жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8049,N'Жалба с-у действия на съдия-изпълн.',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8050,N'Частна жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8051,N'Протест',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8052,N'Протест и жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8053,N'Частен протест',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8054,N'Частен протест и частна жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8055,N'Молба за определяне срок при бавност',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8056,N'Касационна жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8057,N'Касационна частна жалба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8058,N'Касационен протест',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8059,N'Касационен частен протест',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8060,N'Частна тъжба',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8061,N'Искане за определяне на компетентен съд ',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8062,N'Предложение',1);
+INSERT INTO [dbo].[IndocKinds] ([IndocKindId], [Name], [IsActive]) VALUES (8063,N'Установителен иск',1);
+
+SET IDENTITY_INSERT [dbo].[IndocKinds] OFF
+GO

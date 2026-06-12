@@ -1,0 +1,1 @@
+﻿INSERT INTO [UsersRoles] ([UserId], [RoleId]) VALUES ('b796435f-c38c-49e5-b3a2-c1d91be2f7c5', 'ed201db4-bd56-4f7f-92a4-b224dd671f2b');

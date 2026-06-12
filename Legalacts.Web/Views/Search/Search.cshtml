@@ -1,0 +1,290 @@
+﻿@model Legalacts.Web.Models.SearchVM
+@using PagedList
+@using PagedList.Mvc;
+@using Legalacts.Web.Captcha
+
+<div class="bg-home">
+    @Html.Partial(MVC.Shared.Views._HeaderPartial)
+    <div class="search-panel @(Model.IsAdvanced ? "advanced" : "")">
+        <div class="container">
+            <div class="title">
+                <span>Търсене</span>
+                <strong>на съдебни<br />актове</strong>
+            </div>
+            <form class="search-form" method="post">
+
+                @Html.CustomValidationSummary()
+
+                @Html.HiddenFor(m => m.IsAdvanced)
+
+                @Html.AntiForgeryToken()
+
+                <div class="rw">
+                    <div class="lbl">Съд:</div>
+                    <div class="vl">
+                        @Html.DropDownListFor(m => m.CourtId, Model.Courts, "Всички", new { @class = "selectboxit" })
+                    </div>
+                </div>
+                <div class="rw">
+                    <div class="lbl">Вид дело:</div>
+                    <div class="vl">
+                        @Html.DropDownListFor(m => m.CaseKindId, Model.CaseKinds, "Всички", new { @class = "selectboxit" })
+                    </div>
+                </div>
+                <div class="rw">
+                    <div class="lbl">Дело номер:</div>
+                    <div class="vl clearfix">
+                        <div class="col-sm-7 no-padding">
+                            @Html.TextBoxFor(m => m.CaseNumber)
+                        </div>
+                        <div class="col-sm-5 no-padding">
+                            <div class="tbl">
+                                <div class="tbl-cell">
+                                    Година:
+                                </div>
+                                <div class="tbl-cell year">
+                                    @Html.DropDownListFor(m => m.CaseYear, Model.CaseYears, "Всички", new { @class = "selectboxit" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rw advanced-fields">
+                    <div class="lbl">Съдебен състав или съдия:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.Judge)
+                    </div>
+                </div>
+                <div class="rw advanced-fields">
+                    <div class="lbl">Вид на съдебния акт:</div>
+                    <div class="vl">
+                        @Html.DropDownListFor(m => m.ActKindId, Model.ActKinds, "Всички", new { @class = "selectboxit" })
+                    </div>
+                </div>
+                <div class="rw advanced-fields">
+                    <div class="lbl">Статус на съдебния акт:</div>
+                    <div class="vl">
+                        @Html.DropDownListFor(m => m.StatusId, Model.Statuses, "Всички", new { @class = "selectboxit" })
+                    </div>
+                </div>
+                <div class="rw advanced-fields">
+                    <div class="lbl">Номер на акта:</div>
+                    <div class="vl clearfix">
+                        <div class="col-sm-7 no-padding">
+                            @Html.TextBoxFor(m => m.ActNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-5 no-padding">
+                            <div class="tbl">
+                                <div class="tbl-cell">
+                                    Година:
+                                </div>
+                                <div class="tbl-cell year">
+                                    @Html.DropDownListFor(m => m.ActYear, Model.ActYears, "Всички", new { @class = "selectboxit" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rw advanced-fields">
+                    <div class="lbl">Дата на постановление от:</div>
+                    <div class="vl clearfix">
+                        <div class="col-sm-6 no-padding">
+                            @Html.TextBoxFor(m => m.DateFrom, new { @class = "date", id = "from", @autocomplete = "off", style = "cursor: pointer" })
+                        </div>
+                        <div class="col-sm-6 no-padding">
+                            <div class="tbl">
+                                <div class="tbl-cell">
+                                    до:
+                                </div>
+                                <div class="tbl-cell">
+                                    @Html.TextBoxFor(m => m.DateTo, new { @class = "date", id = "to", @autocomplete = "off", style = "cursor: pointer" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rw">
+                    <div class="lbl">ECLI номер:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.ECLI)
+                    </div>
+                </div>
+                <div class="rw">
+                    <div class="lbl">Ключови думи:</div>
+                    <div class="vl">
+                        @Html.TextBoxFor(m => m.KeyWord)
+                    </div>
+                </div>
+                <div class="rw">
+                    <div class="lbl"></div>
+                    <div class="vl">
+                        <label data-toggle="tooltip" data-placement="top" title='Например: при търсене на "дело" намира "делата", "делото" и т.н.' class="checkbox">
+                            Търсене на производни думи
+                            @Html.CheckBoxFor(m => m.IsLuceneInUse)
+                        </label>
+                    </div>
+                </div>
+                <div class="rw advanced-fields">
+                    <div class="lbl"></div>
+                    <div class="vl">
+                        <label class="checkbox">
+                            Включи актовете по свързани с делото дела на други инстанции
+                            @Html.CheckBoxFor(m => m.ShowConnected)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl">Код:</div>
+                    <div class="vl">
+                        @Html.TextBox("Captcha", null, new { @class = "captcha", @autocomplete = "off" })
+                        @Html.CaptchaImage(38, 120)
+                    </div>
+                </div>
+
+                <div class="rw">
+                    <div class="lbl"></div>
+                    <div class="vl">
+                        <input type="submit" class="search-submit please-wait" value="ТЪРСИ" />
+                        <span class="advanced-search">
+                            @if (Model.IsAdvanced)
+                {
+                    <span class="advanced">Разширено търсене</span>
+                    <span style="display: block;" class="short">Бързо търсене</span>
+    }
+    else
+    {
+            <span style="display: block;" class="advanced">Разширено търсене</span>
+            <span class="short">Бързо търсене</span>
+}
+                        </span>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (ViewData.ModelState.IsValid && Model.ShowResults)
+{
+    if (Model.SearchResults == null)
+    {
+        Model.SearchResults = new PagedList<Legalacts.Model.Entities.Act>(null, 1, 1);
+    }
+
+    <div class="container">
+        <div class="list-results">
+            <span class="scroll-to-top">
+                <img src="@Url.Content(Links.Content.img.scroll_top_png)" alt="Ново търсене" />
+                <span>Ново търсене</span>
+            </span>
+            @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+            {
+                <h2 class="brown">Намерени <strong>@Model.SearchResults.TotalItemCount</strong> съдебни акта</h2>
+                <div class="results-table">
+                    <div class="results-thead">
+                        <div class="results-cell">Вид акт</div>
+                        <div class="results-cell">Акт номер</div>
+                        <div class="results-cell">В сила</div>
+                        <div class="results-cell">Съд</div>
+                        <div class="results-cell">Дело номер</div>
+                        <div class="results-cell">Вид дело</div>
+                    </div>
+                    @foreach (var res in Model.SearchResults)
+                    {
+                        @Html.DisplayFor(m => res, MVC.Shared.Views.DisplayTemplates.ActRow)
+
+                        if (Model.IsAdvanced && Model.ShowConnected && res.ConnectedActs != null && res.ConnectedActs.Count > 0)
+                        {
+                            foreach (var connectedAct in res.ConnectedActs)
+                            {
+                                @Html.DisplayFor(m => connectedAct, MVC.Shared.Views.DisplayTemplates.ActRow)
+                            }
+                        }
+                    }
+                </div>
+
+
+                if (Model.SearchResults.PageCount > 1)
+                {
+                    <div class="paging clearfix">
+                        @Html.PagedListPager(Model.SearchResults,
+                            page => Url.Action(MVC.Search.ActionNames.Search,
+                                MVC.Search.Name
+                                , new
+                                {
+                                    page = Legalacts.Utils.Managers.ConfigurationBasedStringEncrypter.Encrypt(page.ToString()),
+                                    courtId = Request.QueryString["courtId"],
+                                    caseKindId = Request.QueryString["caseKindId"],
+                                    caseNumber = Request.QueryString["caseNumber"],
+                                    caseYear = Request.QueryString["caseYear"],
+                                    judge = Request.QueryString["judge"],
+                                    keyWord = Request.QueryString["keyWord"],
+                                    actKindId = Request.QueryString["actKindId"],
+                                    statusId = Request.QueryString["statusId"],
+                                    actNumber = Request.QueryString["actNumber"],
+                                    actYear = Request.QueryString["actYear"],
+                                    dateFrom = Request.QueryString["dateFrom"],
+                                    dateTo = Request.QueryString["dateTo"],
+                                    showConnected = Request.QueryString["showConnected"],
+                                    isLuceneInUse = Request.QueryString["isLuceneInUse"],
+                                    showResults = Request.QueryString["showResults"],
+                                    isAdvanced = Request.QueryString["isAdvanced"]
+                                })
+                                , new PagedListRenderOptions
+                                {
+                                    Display = PagedListDisplayMode.IfNeeded,
+                                    DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+                                    LinkToNextPageFormat = ">",
+                                    LinkToPreviousPageFormat = "<"
+                                })
+                        <span>Страница (@Model.SearchResults.PageNumber/@Model.SearchResults.PageCount):</span>
+                    </div>
+                }
+            }
+            else if (Model.ShowResults)
+            {
+                <h2 class="brown">Няма намерени резултати</h2>
+            }
+            <p style="font-style:italic">Забележка: Порталът съдържа само данни на съдилищата, които са публикували своите съдебни актове.</p>
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script>
+            $(window).resize(function () { calc_list_margin_top(); });
+            $(document).ready(function () {
+                calc_list_margin_top();
+                $('html, body').animate({ scrollTop: ($('.bg-home').height() - $('.scroll-to-top').height() / 2) }, 1400, 'easeOutQuint');
+            });
+            function calc_list_margin_top() {
+                $(".list-results").css("margin-top", $('.bg-home').height() + "px");
+            }
+        </script>
+    }
+}
+else
+{
+    <div class="list-results">
+    </div>
+
+    @section scripts
+    {
+        <script>
+            $(window).resize(function () { calc_list_margin_top(); });
+            $(document).ready(function () {
+                calc_list_margin_top();
+            });
+            function calc_list_margin_top() {
+                $(".list-results").css("margin-top", $('.bg-home').height() + "px");
+            }
+        </script>
+    }
+}
+
+@Html.Partial(MVC.Shared.Views._FooterPartial)
+
+

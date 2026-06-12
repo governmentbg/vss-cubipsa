@@ -1,0 +1,29 @@
+﻿USE [master]
+GO
+
+print 'Create database $(dbName)'
+GO
+
+IF EXISTS (SELECT name FROM sys.databases WHERE name = N'$(dbName)')
+BEGIN
+    ALTER DATABASE [$(dbName)] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+    DROP DATABASE [$(dbName)]
+END
+GO
+
+CREATE DATABASE [$(dbName)] COLLATE Cyrillic_General_CI_AS
+GO
+
+ALTER DATABASE [$(dbName)]
+SET ALLOW_SNAPSHOT_ISOLATION ON
+
+ALTER DATABASE [$(dbName)]
+SET READ_COMMITTED_SNAPSHOT ON
+GO
+
+ALTER DATABASE [$(dbName)] 
+	MODIFY FILE ( NAME = N'$(dbName)', FILEGROWTH = 256MB ) 
+GO 
+ALTER DATABASE [$(dbName)] 
+	MODIFY FILE (NAME = N'$(dbName)_log', FILEGROWTH = 128MB ) 
+GO

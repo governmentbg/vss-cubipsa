@@ -1,0 +1,1 @@
+﻿INSERT INTO [Users] ([Id], [Username], [Password], [Name], [Email]) VALUES ('b796435f-c38c-49e5-b3a2-c1d91be2f7c5', 'user', 'password', N'Администратор', 'admin@legalacts.bg');

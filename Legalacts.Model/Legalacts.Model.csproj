@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DBF44D2-C7A6-4A2F-89FA-0F29A3DFD214}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Legalacts.Model</RootNamespace>
+    <AssemblyName>Legalacts.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene">
+      <HintPath>..\References\Lucene.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ecli\Converter.cs" />
+    <Compile Include="Ecli\DateTimeIso8601.cs" />
+    <Compile Include="Ecli\ecli-types.cs" />
+    <Compile Include="Ecli\ecli.cs" />
+    <Compile Include="Entities\Act.cs" />
+    <Compile Include="Entities\ActDocument.cs" />
+    <Compile Include="Entities\ActionLogType.cs" />
+    <Compile Include="Entities\ActKind.cs" />
+    <Compile Include="Entities\AppealKind.cs" />
+    <Compile Include="Entities\CaseKind.cs" />
+    <Compile Include="Entities\ConnectedCase.cs" />
+    <Compile Include="Entities\ConnectedKind.cs" />
+    <Compile Include="Entities\ConnectedType.cs" />
+    <Compile Include="Entities\Court.cs" />
+    <Compile Include="Entities\DeletedAct.cs" />
+    <Compile Include="Entities\HigherCourt.cs" />
+    <Compile Include="Entities\IndocKind.cs" />
+    <Compile Include="Entities\Involvement.cs" />
+    <Compile Include="Entities\LegalactsContext.cs" />
+    <Compile Include="Entities\Link.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\Mapping\ActDocumentMap.cs" />
+    <Compile Include="Entities\Mapping\ActionLogTypeMap.cs" />
+    <Compile Include="Entities\Mapping\ActKindMap.cs" />
+    <Compile Include="Entities\Mapping\ActMap.cs" />
+    <Compile Include="Entities\Mapping\AppealKindMap.cs" />
+    <Compile Include="Entities\Mapping\CaseKindMap.cs" />
+    <Compile Include="Entities\Mapping\ConnectedCasMap.cs" />
+    <Compile Include="Entities\Mapping\ConnectedKindMap.cs" />
+    <Compile Include="Entities\Mapping\ConnectedTypeMap.cs" />
+    <Compile Include="Entities\Mapping\CourtMap.cs" />
+    <Compile Include="Entities\Mapping\DeletedActMap.cs" />
+    <Compile Include="Entities\Mapping\HigherCourtMap.cs" />
+    <Compile Include="Entities\Mapping\IndocKindMap.cs" />
+    <Compile Include="Entities\Mapping\InvolvementMap.cs" />
+    <Compile Include="Entities\Mapping\LinkMap.cs" />
+    <Compile Include="Entities\Mapping\LogMap.cs" />
+    <Compile Include="Entities\Mapping\MotiveDocumentMap.cs" />
+    <Compile Include="Entities\Mapping\PermissionMap.cs" />
+    <Compile Include="Entities\Mapping\ResultsOfAppealMap.cs" />
+    <Compile Include="Entities\Mapping\RoleMap.cs" />
+    <Compile Include="Entities\Mapping\SendToDocumentKindMap.cs" />
+    <Compile Include="Entities\Mapping\StatusMap.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\SystemLog.cs" />
+    <Compile Include="Entities\Mapping\UserMap.cs" />
+    <Compile Include="Entities\MotiveDocument.cs" />
+    <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\ResultsOfAppeal.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\SendToDocumentKind.cs" />
+    <Compile Include="Entities\Status.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="LegalactsModelModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\LegalactsRepository\LegalactsRepository.cs" />
+    <Compile Include="Repositories\NomenclatureRepository\NomenclatureRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\SitemapRepository\SitemapRepository.cs" />
+    <Compile Include="Sitemap\Index.cs" />
+    <Compile Include="Sitemap\Mapping\SystemVariableMap.cs" />
+    <Compile Include="Sitemap\Mapping\IndexMap.cs" />
+    <Compile Include="Sitemap\Mapping\RouteMap.cs" />
+    <Compile Include="Sitemap\Mapping\SitemapMap.cs" />
+    <Compile Include="Sitemap\SystemVariable.cs" />
+    <Compile Include="Sitemap\Route.cs" />
+    <Compile Include="Sitemap\Sitemap.cs" />
+    <Compile Include="Sitemap\SitemapContext.cs" />
+    <Compile Include="UnitOfWork\BogusTransaction.cs" />
+    <Compile Include="UnitOfWork\ITransaction.cs" />
+    <Compile Include="UnitOfWork\ISitemapUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\Transaction.cs" />
+    <Compile Include="UnitOfWork\SitemapUnitOfWorkImpl.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkImpl.cs" />
+    <Compile Include="Utils\EcliMetadata.cs" />
+    <Compile Include="Utils\EFExtensions.cs" />
+    <Compile Include="Utils\ParsedQueryInfo.cs" />
+    <Compile Include="Utils\SearchQueryParser.cs" />
+    <Compile Include="Utils\SearchQueryType.cs" />
+    <Compile Include="Utils\SqlQueryHelper.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

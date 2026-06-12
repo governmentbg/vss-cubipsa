@@ -1,0 +1,7 @@
+﻿@model System.Nullable<System.DateTime>
+
+@if (Model.HasValue)
+{
+    <text>@String.Format("{0:dd.MM.yyyyг.}", Model.Value)</text>
+}
+

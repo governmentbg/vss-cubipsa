@@ -1,0 +1,40 @@
+﻿@model Legalacts.Web.Models.LogonVM
+@using Legalacts.Web.Captcha
+
+
+<div class="bg-inner">
+    @Html.Partial(MVC.Shared.Views._HeaderPartial)
+</div>
+
+<div class="container main-content">
+    <form class="search-form logged-form" method="post">
+        @Html.CustomValidationSummary(true)
+        <div class="rw">
+            <div class="lbl">Потребителско име:</div>
+            <div class="vl">
+                @Html.TextBoxFor(m => m.UserName, new { autofocus = "autofocus" })
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl">Парола:</div>
+            <div class="vl">
+                @Html.PasswordFor(m => m.Password)
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl">Код:</div>
+            <div class="vl">
+                @Html.TextBox("Captcha", null, new { @class = "captcha", @autocomplete = "off" })
+                @Html.CaptchaImage(40, 120)
+            </div>
+        </div>
+        <div class="rw">
+            <div class="lbl"></div>
+            <div class="vl clearfix">
+                <input type="submit" class="search-submit" value="ВХОД" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@Html.Partial(MVC.Shared.Views._FooterPartial)

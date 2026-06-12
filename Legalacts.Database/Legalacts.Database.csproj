@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{452C2561-2964-4316-8C73-87DB72474D42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Legalacts.Database</RootNamespace>
+    <AssemblyName>Legalacts.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CreateAll.bat" />
+    <None Include="CreateAll.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateAll.tt</DependentUpon>
+    </None>
+    <None Include="CreateAll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CreateAll.log</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Constraints\Constraints.sql" />
+    <Content Include="CreateAll.sql" />
+    <Content Include="Create\Create.sql" />
+    <Content Include="Create\CreateDB.sql" />
+    <Content Include="Create\Indexes\idxFullTextSearch.sql" />
+    <Content Include="Create\Indexes\idxNonclustered.sql" />
+    <Content Include="Create\Tables\ActionLogTypes.sql" />
+    <Content Include="Create\Tables\Messages.sql" />
+    <Content Include="Create\Tables\MotiveDocuments.sql" />
+    <Content Include="Create\Tables\ActDocuments.sql" />
+    <Content Include="Create\Tables\ActKinds.sql" />
+    <Content Include="Create\Tables\Acts.sql" />
+    <Content Include="Create\Tables\AppealKinds.sql" />
+    <Content Include="Create\Tables\CaseKinds.sql" />
+    <Content Include="Create\Tables\ConnectedActs.sql" />
+    <Content Include="Create\Tables\ConnectedCases.sql" />
+    <Content Include="Create\Tables\ConnectedKinds.sql" />
+    <Content Include="Create\Tables\ConnectedTypes.sql" />
+    <Content Include="Create\Tables\Courts.sql" />
+    <Content Include="Create\Tables\HigherCourts.sql" />
+    <Content Include="Create\Tables\IndocKinds.sql" />
+    <Content Include="Create\Tables\Involvements.sql" />
+    <Content Include="Create\Tables\Links.sql" />
+    <Content Include="Create\Tables\Logs.sql" />
+    <Content Include="Create\Tables\Permissions.sql" />
+    <Content Include="Create\Tables\ResultsOfAppeals.sql" />
+    <Content Include="Create\Tables\Roles.sql" />
+    <Content Include="Create\Tables\RolesPermissions.sql" />
+    <Content Include="Create\Tables\SendToDocumentKinds.sql" />
+    <Content Include="Create\Tables\Statuses.sql" />
+    <Content Include="Create\Tables\SystemLogs.sql" />
+    <Content Include="Create\Tables\Users.sql" />
+    <Content Include="Create\Tables\UsersRoles.sql" />
+    <Content Include="Diagram\Main.sql" />
+    <Content Include="Inserts\ActionLogTypes.sql" />
+    <Content Include="Inserts\ActKinds.sql" />
+    <Content Include="Inserts\AppealKinds.sql" />
+    <Content Include="Inserts\CaseKinds.sql" />
+    <Content Include="Inserts\ConnectedKinds.sql" />
+    <Content Include="Inserts\ConnectedTypes.sql" />
+    <Content Include="Inserts\Courts.sql" />
+    <Content Include="Inserts\IndocKinds.sql" />
+    <Content Include="Inserts\Involvements.sql" />
+    <Content Include="Inserts\ResultsOfAppeals.sql" />
+    <Content Include="Inserts\Roles.sql" />
+    <Content Include="Inserts\SendToDocumentKinds.sql" />
+    <Content Include="Inserts\Statuses.sql" />
+    <Content Include="Inserts\Test\sample_acts.sql" />
+    <Content Include="Inserts\Test\sample_files.sql" />
+    <Content Include="Inserts\Users.sql" />
+    <Content Include="Inserts\UsersRoles.sql" />
+    <Content Include="Programmability\sp\spMergeConnectedActs.sql" />
+    <Content Include="Updates\2018-04-17-add-acts-create-modify-date-column.sql" />
+    <Content Include="Updates\2018-03-13-add-acts-eclicode-column.sql" />
+    <Content Include="Updates\2018-03-13-add-courts-eclicodes.sql" />
+    <Content Include="Updates\2018-03-13-add-casekinds-eclicodes.sql" />
+    <Content Include="Updates\2024-06-18-new-act-kinds.sql" />
+    <Content Include="Updates\2018-08-22-unique-contraint.sql" />
+    <Content Include="Updates\2018-06-08-deleted-acts.sql" />
+    <Content Include="Updates\20240718_Act_Indexes.sql" />
+    <Content Include="Updates\cteRemoveDuplicatedActs.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
